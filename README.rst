@@ -27,13 +27,11 @@ Here's some code to retrieve readings from a couple test devices, one Laser Egg 
 
 	async with aiohttp.ClientSession() as session:
 		client = KaiterraAPIClient(session, api_key='YOUR_API_KEY_HERE')
-
-		r = client.get_latest_sensor_readings([
+		r = await client.get_latest_sensor_readings([
 			'/lasereggs/00000000-0001-0001-0000-00007e57c0de',
 			'/sensedges/00000000-0031-0001-0000-00007e57c0de',
 		])
 		print(r)
-
 
 Development
 -------------
