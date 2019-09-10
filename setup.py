@@ -9,9 +9,9 @@ with open('README.rst', 'r') as f:
 
 
 setuptools.setup(
-    name='kaiterra-client',
+    name='kaiterra-async-client',
     version='0.0.1',
-    description="Kaiterra API Client",
+    description="Kaiterra API Async Client",
     long_description=readme,
     long_description_content_type="text/x-rst",
     url='https://github.com/kaiterra/api-python',
@@ -19,13 +19,13 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=['tests']),
     test_suite='kaiterra_client.tests',
     tests_require=[
-        'requests-mock',
+        'aioresponses',
+        'aiounittest'
     ],
     install_requires=[
-        # Require new ISRG root certificates
-        'requests>=2.16.0',
+        'aiohttp>=3.6.0',
     ],
-    # Uses enums (3.4) and type hints (3.5), though reducing this to >=3.4
+    # Uses enums (3.4) and type hints (3.5), though reducing this to >=3.5
     # by importing the typing package is a possibility
     python_requires='>=3.5',
     classifiers=[

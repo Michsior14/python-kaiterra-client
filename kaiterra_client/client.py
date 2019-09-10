@@ -3,7 +3,7 @@ Python client for the Kaiterra REST API.
 """
 
 import json
-import requests
+import aiohttp
 from typing import List
 from enum import Enum
 from kaiterra_client import dateutil
@@ -62,11 +62,12 @@ class KaiterraAPIClient(object):
     """
 
     def __init__(self,
+                 session,
                  base_url='https://api.kaiterra.cn',
                  api_key=None,
                  hmac_secret=None,
                  aqi_standard=None,
-                 preferred_units=None,
+                 preferred_units=None
                  ):
         """Constructs a new KaiterraAPIClient object."""
         self._base_url = base_url.rstrip('/')
@@ -74,6 +75,7 @@ class KaiterraAPIClient(object):
         self._hmac_secret = hmac_secret
         self._preferred_units = []
         self._aqi_standard = aqi_standard
+        self._session = session
 
         if preferred_units is not None:
             for u in preferred_units:
@@ -85,18 +87,7 @@ class KaiterraAPIClient(object):
         if self._api_key is not None and self._hmac_secret is not None:
             raise ValueError("Must specify only one of api_key or hmac_secret")
 
-        self._session = requests.Session()
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        self.close()
-
-    def close(self):
-        self._session.close()
-
-    def get_latest_sensor_readings(self, sensor_ids: List[str]) -> List[dict]:
+    async def get_latest_sensor_readings(self, sensor_ids: List[str]) -> List[dict]:
         """
         Retrieves the latest sensor readings for the given sensors.
 
@@ -143,8 +134,7 @@ class KaiterraAPIClient(object):
             }
             requests.append(req)
 
-        r = self._do_request(
-            'POST',
+        r = await self._do_request(
             '/v1/batch',
             headers={'Content-Type': 'application/json'},
             json=requests)
@@ -185,7 +175,7 @@ class KaiterraAPIClient(object):
 
         return parsed
 
-    def _do_request(self, method, relative_url, *, params=None, headers=None, json=None):
+    async def _do_request(self, relative_url, *, params=None, headers=None, json=None):
         """
         Executes an HTTP GET/POST against the given resource.  The request is authorized
         using the credentials given to __init__.
@@ -199,10 +189,8 @@ class KaiterraAPIClient(object):
             params['key'] = self._api_key
 
         url = self._base_url + '/' + relative_url.lstrip('/')
-        r = self._session.request(method, url, params=params, headers=headers, json=json)
-        r.raise_for_status()
-
-        return r.json()
+        async with self._session.post(url, params=params, headers=headers, json=json, raise_for_status=True) as r:
+            return await r.json()
 
     def _is_valid_sensor_id(self, sid: str) -> bool:
         """
