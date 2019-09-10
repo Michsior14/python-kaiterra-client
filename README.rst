@@ -1,5 +1,5 @@
 python-kaiterra-async-client
-==========================
+============================
 
 Python 3 client for retrieving readings from your Laser Egg or Sensedge using the `Kaiterra REST API <https://www.kaiterra.com/dev>`__.
 
