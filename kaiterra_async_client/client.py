@@ -6,7 +6,7 @@ import json
 import aiohttp
 from typing import List
 from enum import Enum
-from kaiterra_client import dateutil
+from kaiterra_async_client import dateutil
 
 
 class AQIStandard(Enum):

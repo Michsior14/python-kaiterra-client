@@ -3,8 +3,8 @@
 import os
 import aiohttp
 import aiounittest
-from kaiterra_client.tests import skip_online_tests
-from kaiterra_client import KaiterraAPIClient, Units
+from kaiterra_async_client.tests import skip_online_tests
+from kaiterra_async_client import KaiterraAPIClient, Units
 
 def create_client(session):
     if 'KAITERRA_APIV1_URL_KEY' not in os.environ:

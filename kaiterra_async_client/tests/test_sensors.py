@@ -4,7 +4,7 @@ import aiohttp
 import aiounittest
 from aioresponses import aioresponses
 from datetime import datetime, timezone
-from kaiterra_client import KaiterraAPIClient, Units, AQIStandard
+from kaiterra_async_client import KaiterraAPIClient, Units, AQIStandard
 
 
 def create_client(session):
