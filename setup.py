@@ -10,7 +10,7 @@ with open('README.rst', 'r') as f:
 
 setuptools.setup(
     name='kaiterra-async-client',
-    version='0.0.1',
+    version='0.0.2',
     description="Kaiterra API Async Client",
     long_description=readme,
     long_description_content_type="text/x-rst",
