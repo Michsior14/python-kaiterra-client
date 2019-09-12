@@ -18,6 +18,13 @@ class AQIStandard(Enum):
     China = 'cn'
     India = 'in'
 
+    @staticmethod
+    def from_str(s: str):
+        for v in AQIStandard.__members__.values():
+            if v.value == s:
+                return v
+        raise ValueError("'{}' isn't a known value for AQIStandard".format(s))
+
 
 class Units(Enum):
     """
