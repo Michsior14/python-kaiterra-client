@@ -16,7 +16,7 @@ setuptools.setup(
     long_description_content_type="text/x-rst",
     url='https://github.com/Michsior14/python-kaiterra-async-client',
     license='MIT License',
-    packages=setuptools.find_packages(exclude=['tests']),
+    packages=setuptools.find_packages(exclude=['*.tests', '*.tests.*']),
     test_suite='kaiterra_async_client.tests',
     tests_require=[
         'aioresponses',
