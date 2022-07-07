@@ -10,7 +10,7 @@ with open('README.rst', 'r') as f:
 
 setuptools.setup(
     name='kaiterra-async-client',
-    version='0.0.2',
+    version='0.0.3',
     description="Kaiterra API Async Client",
     long_description=readme,
     long_description_content_type="text/x-rst",
@@ -23,19 +23,15 @@ setuptools.setup(
         'aiounittest'
     ],
     install_requires=[
-        'aiohttp>=3.6.0',
+        'aiohttp>=3.8.1',
     ],
-    # Uses enums (3.4) and type hints (3.5), though reducing this to >=3.5
-    # by importing the typing package is a possibility
-    python_requires='>=3.5',
+    python_requires='>=3.10',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.10',
         'Topic :: Software Development :: Libraries',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],

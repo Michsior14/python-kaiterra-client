@@ -150,8 +150,8 @@ class KaiterraAPIClient(object):
         return [self._parse_series_major_single_points(x) for x in r]
 
     def _parse_series_major_single_points(self, response: dict) -> dict:
-        import collections
-        if not isinstance(response, collections.Mapping):
+        from collections.abc import Mapping
+        if not isinstance(response, Mapping):
             return None
         if response.get('code', 0) < 200 or response.get('code', 0) >= 400:
             return None
