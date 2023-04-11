@@ -23,7 +23,7 @@ class GetSensorDataTests(aiounittest.AsyncTestCase):
         async with aiohttp.ClientSession() as session:
             client = create_client(session)
             readings = await client.get_latest_sensor_readings([
-                '/lasereggs/00000000-0031-0001-0000-00007e57c0de',
+                '/lasereggs/00000000-0001-0001-0000-00007e57c0de',
                 '/lasereggs/00000000-ffff-0001-ffff-00007e57c0de',
             ])
             self.assertEqual(2, len(readings))

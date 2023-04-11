@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-def parse_rfc3339(ts: str) -> (datetime, bool):
+def parse_rfc3339(ts: str) -> datetime:
     """
     Parses RFC3339 dates, with or without milliseconds.  Raises ValueError if
     the date is improperly formatted.

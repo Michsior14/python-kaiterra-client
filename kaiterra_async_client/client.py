@@ -56,7 +56,7 @@ class KaiterraAPIClient(object):
     :param base_url: URL under which the API can be found.  The default value is sufficient
     for most cases.
     :param api_key: Secret key, obtained from the Kaiterra dashboard at
-    https://dashboard.kaiterra.cn, that uniquely identifies the client making the request.
+    https://dashboard.kaiterra.com, that uniquely identifies the client making the request.
     :param hmac_secret: Secret key that can be used to authorize requests without
     transmitting the key over the wire.  (Note: most clients don't use this)
     :param aqi_standard: Indicates that air quality index (AQI) should be calculated
@@ -70,7 +70,7 @@ class KaiterraAPIClient(object):
 
     def __init__(self,
                  session,
-                 base_url='https://api.kaiterra.cn',
+                 base_url='https://api.kaiterra.com',
                  api_key=None,
                  hmac_secret=None,
                  aqi_standard=None,
