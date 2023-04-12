@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 
+
 def parse_rfc3339(ts: str) -> datetime:
     """
     Parses RFC3339 dates, with or without milliseconds.  Raises ValueError if
@@ -11,6 +12,8 @@ def parse_rfc3339(ts: str) -> datetime:
         pass
 
     try:
-        return datetime.strptime(ts, "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=timezone.utc)
+        return datetime.strptime(ts, "%Y-%m-%dT%H:%M:%S.%fZ").replace(
+            tzinfo=timezone.utc
+        )
     except ValueError:
         raise
